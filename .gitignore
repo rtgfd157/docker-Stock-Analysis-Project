@@ -1,0 +1,35 @@
+App/stock_analysis_project/static/*
+App/stock_analysis_project/db.sqlite3
+App/stock_analysis_project/static/*
+
+App/stock_analysis_project/celerybeat-schedule.*
+
+.idea
+App/stock_analysis_project/frontend/.DS_Store
+App/stock_analysis_project/frontend/node_modules
+App/stock_analysis_project/frontend/dist/
+
+# local env files
+App/stock_analysis_project/frontend/.env.local
+App/stock_analysis_project/frontend/.env.*.local
+
+# Log files
+App/stock_analysis_project/frontend/npm-debug.log*
+App/stock_analysis_project/frontend/yarn-debug.log*
+App/stock_analysis_project/frontend/yarn-error.log*
+App/stock_analysis_project/frontend/pnpm-debug.log*
+
+# Editor directories and files
+App/stock_analysis_project/frontend/.idea
+App/stock_analysis_project/frontend/.vscode
+App/stock_analysis_project/frontend/*.suo
+App/stock_analysis_project/frontend/*.ntvs*
+App/stock_analysis_project/frontend/*.njsproj
+App/stock_analysis_project/frontend/*.sln
+App/stock_analysis_project/frontend/*.sw?
+
+db
+
+App/stock_analysis_project/__pycache__/*
+App/stock_analysis_project/OBVapp/__pycache__/*
+App/stock_analysis_project/stock_analysis_project/__pycache__/*

@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main_app package &#8212; stock analysis project 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Main_app.migrations package" href="Main_app.migrations.html" />
+    <link rel="prev" title="stock_analysis_project" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="main-app-package">
+<h1>Main_app package<a class="headerlink" href="#main-app-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Main_app.migrations.html">Main_app.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.migrations.html#module-Main_app.migrations.0001_initial">Main_app.migrations.0001_initial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.migrations.html#module-Main_app.migrations.0002_comapnystockdata_update_time">Main_app.migrations.0002_comapnystockdata_update_time module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.migrations.html#module-Main_app.migrations.0003_auto_20200713_1857">Main_app.migrations.0003_auto_20200713_1857 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.migrations.html#module-Main_app.migrations.0004_auto_20200714_1111">Main_app.migrations.0004_auto_20200714_1111 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.migrations.html#module-Main_app.migrations.0005_auto_20200714_1134">Main_app.migrations.0005_auto_20200714_1134 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.migrations.html#module-Main_app.migrations.0006_auto_20200714_1148">Main_app.migrations.0006_auto_20200714_1148 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Main_app.migrations.html#module-Main_app.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-Main_app.admin">
+<span id="main-app-admin-module"></span><h2>Main_app.admin module<a class="headerlink" href="#module-Main_app.admin" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="Main_app.admin.StockDataAdmin">
+<em class="property">class </em><code class="sig-prename descclassname">Main_app.admin.</code><code class="sig-name descname">StockDataAdmin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">admin_site</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.admin.StockDataAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">import_export.admin.ImportExportModelAdmin</span></code></p>
+<p>an ability in  admin  page to import/export  StockData to csv 
+xls file not work wit value True as is treat it as 1 ..</p>
+<dl class="py method">
+<dt id="Main_app.admin.StockDataAdmin.media">
+<em class="property">property </em><code class="sig-name descname">media</code><a class="headerlink" href="#Main_app.admin.StockDataAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Main_app.apps">
+<span id="main-app-apps-module"></span><h2>Main_app.apps module<a class="headerlink" href="#module-Main_app.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="Main_app.apps.MainAppConfig">
+<em class="property">class </em><code class="sig-prename descclassname">Main_app.apps.</code><code class="sig-name descname">MainAppConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app_name</span></em>, <em class="sig-param"><span class="n">app_module</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.apps.MainAppConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.apps.config.AppConfig</span></code></p>
+<dl class="py attribute">
+<dt id="Main_app.apps.MainAppConfig.name">
+<code class="sig-name descname">name</code><em class="property"> = 'Main_app'</em><a class="headerlink" href="#Main_app.apps.MainAppConfig.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Main_app.models">
+<span id="main-app-models-module"></span><h2>Main_app.models module<a class="headerlink" href="#module-Main_app.models" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="Main_app.models.ComapnyStockData">
+<em class="property">class </em><code class="sig-prename descclassname">Main_app.models.</code><code class="sig-name descname">ComapnyStockData</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.models.ComapnyStockData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>data about ticker, company, exchange market.</p>
+<dl class="py exception">
+<dt id="Main_app.models.ComapnyStockData.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#Main_app.models.ComapnyStockData.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="Main_app.models.ComapnyStockData.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#Main_app.models.ComapnyStockData.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.ComapnyStockData.company_by">
+<code class="sig-name descname">company_by</code><a class="headerlink" href="#Main_app.models.ComapnyStockData.company_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.ComapnyStockData.company_name">
+<code class="sig-name descname">company_name</code><a class="headerlink" href="#Main_app.models.ComapnyStockData.company_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="Main_app.models.ComapnyStockData.get_next_by_update_time">
+<code class="sig-name descname">get_next_by_update_time</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateField: update_time&gt;</em>, <em class="sig-param">is_next=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.models.ComapnyStockData.get_next_by_update_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Main_app.models.ComapnyStockData.get_previous_by_update_time">
+<code class="sig-name descname">get_previous_by_update_time</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateField: update_time&gt;</em>, <em class="sig-param">is_next=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.models.ComapnyStockData.get_previous_by_update_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.ComapnyStockData.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#Main_app.models.ComapnyStockData.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.ComapnyStockData.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#Main_app.models.ComapnyStockData.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.ComapnyStockData.obvindex_set">
+<code class="sig-name descname">obvindex_set</code><a class="headerlink" href="#Main_app.models.ComapnyStockData.obvindex_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.ComapnyStockData.stock_exchange">
+<code class="sig-name descname">stock_exchange</code><a class="headerlink" href="#Main_app.models.ComapnyStockData.stock_exchange" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.ComapnyStockData.ticker">
+<code class="sig-name descname">ticker</code><a class="headerlink" href="#Main_app.models.ComapnyStockData.ticker" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.ComapnyStockData.update_time">
+<code class="sig-name descname">update_time</code><a class="headerlink" href="#Main_app.models.ComapnyStockData.update_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="Main_app.models.StockDayData">
+<em class="property">class </em><code class="sig-prename descclassname">Main_app.models.</code><code class="sig-name descname">StockDayData</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.models.StockDayData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Day specific stock data -  planned to be 10 instances in db for each company stock.</p>
+<dl class="py exception">
+<dt id="Main_app.models.StockDayData.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#Main_app.models.StockDayData.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="Main_app.models.StockDayData.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#Main_app.models.StockDayData.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.StockDayData.close">
+<code class="sig-name descname">close</code><a class="headerlink" href="#Main_app.models.StockDayData.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.StockDayData.company_stock_data">
+<code class="sig-name descname">company_stock_data</code><a class="headerlink" href="#Main_app.models.StockDayData.company_stock_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.StockDayData.company_stock_data_id">
+<code class="sig-name descname">company_stock_data_id</code><a class="headerlink" href="#Main_app.models.StockDayData.company_stock_data_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Main_app.models.StockDayData.get_next_by_stock_date">
+<code class="sig-name descname">get_next_by_stock_date</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateField: stock_date&gt;</em>, <em class="sig-param">is_next=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.models.StockDayData.get_next_by_stock_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Main_app.models.StockDayData.get_previous_by_stock_date">
+<code class="sig-name descname">get_previous_by_stock_date</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateField: stock_date&gt;</em>, <em class="sig-param">is_next=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.models.StockDayData.get_previous_by_stock_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.StockDayData.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#Main_app.models.StockDayData.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.StockDayData.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#Main_app.models.StockDayData.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.StockDayData.stock_date">
+<code class="sig-name descname">stock_date</code><a class="headerlink" href="#Main_app.models.StockDayData.stock_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="Main_app.models.StockDayData.volume">
+<code class="sig-name descname">volume</code><a class="headerlink" href="#Main_app.models.StockDayData.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Main_app.tasks">
+<span id="main-app-tasks-module"></span><h2>Main_app.tasks module<a class="headerlink" href="#module-Main_app.tasks" title="Permalink to this headline">¶</a></h2>
+<dl class="py task">
+<dt id="Main_app.tasks.celery_task_updating_stockdaydata">
+<em class="property">(task)</em><code class="sig-prename descclassname">Main_app.tasks.</code><code class="sig-name descname">celery_task_updating_stockdaydata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.tasks.celery_task_updating_stockdaydata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Task that update every  4 hours ( task config in settins.py ), using yfinannce library.
+work with celery , celery beat (for periodic).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="Main_app.tasks.make">
+<code class="sig-prename descclassname">Main_app.tasks.</code><code class="sig-name descname">make</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">companies_obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.tasks.make" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-Main_app.tests">
+<span id="main-app-tests-module"></span><h2>Main_app.tests module<a class="headerlink" href="#module-Main_app.tests" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-Main_app.views">
+<span id="main-app-views-module"></span><h2>Main_app.views module<a class="headerlink" href="#module-Main_app.views" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="Main_app.views.celery_view">
+<code class="sig-prename descclassname">Main_app.views.</code><code class="sig-name descname">celery_view</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.views.celery_view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="Main_app.views.insert_company_csv">
+<code class="sig-prename descclassname">Main_app.views.</code><code class="sig-name descname">insert_company_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.views.insert_company_csv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="Main_app.views.test_view">
+<code class="sig-prename descclassname">Main_app.views.</code><code class="sig-name descname">test_view</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Main_app.views.test_view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-Main_app">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Main_app" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">stock analysis project</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Stock Analysis Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulesf/OBVappmodules/OBVapp.html">OBVapp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulesf/Main_appmodules/Main_app.html">Main_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulesf/OBVappmodules/all-about-me.html">All about me</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">stock_analysis_project</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">stock_analysis_project</a></li>
+      <li>Next: <a href="Main_app.migrations.html" title="next chapter">Main_app.migrations package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, idan z.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Main_app.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

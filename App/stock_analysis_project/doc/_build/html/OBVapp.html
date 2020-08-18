@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBVapp package &#8212; stock analysis project 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="OBVapp.migrations package" href="OBVapp.migrations.html" />
+    <link rel="prev" title="Main_app.migrations package" href="Main_app.migrations.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="obvapp-package">
+<h1>OBVapp package<a class="headerlink" href="#obvapp-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="OBVapp.migrations.html">OBVapp.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="OBVapp.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OBVapp.migrations.html#module-OBVapp.migrations.0001_initial">OBVapp.migrations.0001_initial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OBVapp.migrations.html#module-OBVapp.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-OBVapp.admin">
+<span id="obvapp-admin-module"></span><h2>OBVapp.admin module<a class="headerlink" href="#module-OBVapp.admin" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-OBVapp.apps">
+<span id="obvapp-apps-module"></span><h2>OBVapp.apps module<a class="headerlink" href="#module-OBVapp.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="OBVapp.apps.ObvappConfig">
+<em class="property">class </em><code class="sig-prename descclassname">OBVapp.apps.</code><code class="sig-name descname">ObvappConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app_name</span></em>, <em class="sig-param"><span class="n">app_module</span></em><span class="sig-paren">)</span><a class="headerlink" href="#OBVapp.apps.ObvappConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.apps.config.AppConfig</span></code></p>
+<dl class="py attribute">
+<dt id="OBVapp.apps.ObvappConfig.name">
+<code class="sig-name descname">name</code><em class="property"> = 'OBVapp'</em><a class="headerlink" href="#OBVapp.apps.ObvappConfig.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-OBVapp.models">
+<span id="obvapp-models-module"></span><h2>OBVapp.models module<a class="headerlink" href="#module-OBVapp.models" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="OBVapp.models.OBVindex">
+<em class="property">class </em><code class="sig-prename descclassname">OBVapp.models.</code><code class="sig-name descname">OBVindex</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#OBVapp.models.OBVindex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p><a class="reference external" href="https://www.investopedia.com/terms/o/onbalancevolume.asp">https://www.investopedia.com/terms/o/onbalancevolume.asp</a>
+will hold best 10  obv = volume percentage best growth for the 10 days.</p>
+<ol class="arabic simple">
+<li><p>If today’s closing price is higher than yesterday’s closing price, then: Current OBV = Previous OBV + today’s volume.</p></li>
+<li><p>If today’s closing price is lower than yesterday’s closing price, then: Current OBV = Previous OBV - today’s volume.</p></li>
+<li><p>If today’s closing price equals yesterday’s closing price, then: Current OBV = Previous OBV.</p></li>
+</ol>
+<p>should be 1 value per each comapny stock in 10 best OBV change in DB.</p>
+<dl class="py exception">
+<dt id="OBVapp.models.OBVindex.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#OBVapp.models.OBVindex.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="OBVapp.models.OBVindex.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#OBVapp.models.OBVindex.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="OBVapp.models.OBVindex.company_stock_data">
+<code class="sig-name descname">company_stock_data</code><a class="headerlink" href="#OBVapp.models.OBVindex.company_stock_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="OBVapp.models.OBVindex.company_stock_data_id">
+<code class="sig-name descname">company_stock_data_id</code><a class="headerlink" href="#OBVapp.models.OBVindex.company_stock_data_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="OBVapp.models.OBVindex.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#OBVapp.models.OBVindex.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="OBVapp.models.OBVindex.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#OBVapp.models.OBVindex.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="OBVapp.models.OBVindex.obv">
+<code class="sig-name descname">obv</code><a class="headerlink" href="#OBVapp.models.OBVindex.obv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="OBVapp.models.OBVindex.percentage_change">
+<code class="sig-name descname">percentage_change</code><a class="headerlink" href="#OBVapp.models.OBVindex.percentage_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-OBVapp.tasks">
+<span id="obvapp-tasks-module"></span><h2>OBVapp.tasks module<a class="headerlink" href="#module-OBVapp.tasks" title="Permalink to this headline">¶</a></h2>
+<dl class="py task">
+<dt id="OBVapp.tasks.celery_task1">
+<em class="property">(task)</em><code class="sig-prename descclassname">OBVapp.tasks.</code><code class="sig-name descname">celery_task1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#OBVapp.tasks.celery_task1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py task">
+<dt id="OBVapp.tasks.make_obv">
+<em class="property">(task)</em><code class="sig-prename descclassname">OBVapp.tasks.</code><code class="sig-name descname">make_obv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="headerlink" href="#OBVapp.tasks.make_obv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-OBVapp.views">
+<span id="obvapp-views-module"></span><h2>OBVapp.views module<a class="headerlink" href="#module-OBVapp.views" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="OBVapp.views.a_view">
+<em class="property">async </em><code class="sig-prename descclassname">OBVapp.views.</code><code class="sig-name descname">a_view</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#OBVapp.views.a_view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="OBVapp.views.obv_index_maker_view">
+<code class="sig-prename descclassname">OBVapp.views.</code><code class="sig-name descname">obv_index_maker_view</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#OBVapp.views.obv_index_maker_view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-OBVapp">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-OBVapp" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">stock analysis project</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Stock Analysis Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulesf/OBVappmodules/OBVapp.html">OBVapp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulesf/Main_appmodules/Main_app.html">Main_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulesf/OBVappmodules/all-about-me.html">All about me</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">stock_analysis_project</a><ul>
+      <li>Previous: <a href="Main_app.migrations.html" title="previous chapter">Main_app.migrations package</a></li>
+      <li>Next: <a href="OBVapp.migrations.html" title="next chapter">OBVapp.migrations package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, idan z.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/OBVapp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,75 @@
+digraph {
+    label="Making Obv index"
+ 
+    start[shape="box", style=rounded];
+
+    Obv_index_init[label="OBV_index_l=[]\nall_stockday_data=(last 5 days data)",
+                    shape="parallelogram", style=""]
+
+    loop_companies_stock_data[label="Loop on companies_stock_data",shape="box", style=""]
+
+    Obv_company_init[label="obv_percentege = 1\nobv =0\n",
+                    shape="parallelogram", style=""]
+
+    
+
+    loop_stockdays_data_for_company[label="Loop on stockday_data_for_company \nfor each comapny\nfrom all_stockday_data",shape="box", style=""]
+
+    obv_vol[label="obv+(stockday_data_for_company.volume)",
+                            shape="parallelogram", style=""]
+
+    if_day_vol_gte_yesterday_vol[label="day_vol >=yesterday_vol",
+                                shape="diamond", style=""];
+
+    obv_percentage_up[label=" obv_percentege +=\n stockday_data_for_company.volume / before_vol",
+                shape="parallelogram", style=""]
+    obv_percentage_down[label="obv_percentege +=\n before_vol / stockday_data_for_company.volume",
+                shape="parallelogram", style=""]
+
+
+    if_loop_StocDayData_finshed[label="If  Loop on stockdays_data_for_company finished",
+                                shape="diamond" ];
+
+    if_company_percentege_among_high[label="If company obv_percentage Among 10 highest\n In OBV_index_l",
+                                shape="diamond"]; 
+    insert_com_value_to_OBV_index_l[label="insert  company  and values to OBV_index_l  ",
+                                    shape="parallelogram", style=""]          
+
+
+    if_loop_companies_stock_data_finished[label="If  Loop on companies_stock_data finished",
+                                            shape="diamond"];
+
+    insert_10_high[shape="box",label=" insert 10 high to DB" style=rounded];
+    finish[shape="box", style=rounded];
+
+
+    start -> Obv_index_init ;
+    Obv_index_init -> loop_companies_stock_data;
+    loop_companies_stock_data  -> Obv_company_init ; 
+    Obv_company_init -> loop_stockdays_data_for_company ;
+    loop_stockdays_data_for_company -> obv_vol;
+    obv_vol -> if_day_vol_gte_yesterday_vol;
+
+    if_day_vol_gte_yesterday_vol -> obv_percentage_up[label="yes"];
+    if_day_vol_gte_yesterday_vol -> obv_percentage_down[label="no"];
+
+
+    obv_percentage_up -> if_loop_StocDayData_finshed;
+    obv_percentage_down -> if_loop_StocDayData_finshed ;
+
+
+    if_loop_StocDayData_finshed -> if_company_percentege_among_high[label="yes"];
+    if_loop_StocDayData_finshed ->  loop_stockdays_data_for_company[label="no"];
+
+    # 
+    if_company_percentege_among_high -> if_loop_companies_stock_data_finished[label="no"] ;
+    if_company_percentege_among_high -> insert_com_value_to_OBV_index_l[label="yes"] ;
+    insert_com_value_to_OBV_index_l ->  if_loop_companies_stock_data_finished;
+
+    #
+    if_loop_companies_stock_data_finished -> insert_10_high[label="yes"];
+    insert_10_high-> finish ;
+    if_loop_companies_stock_data_finished -> loop_companies_stock_data[label="no"];
+
+
+}

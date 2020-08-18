@@ -1,0 +1,108 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_PORT=3306  # cannot change this port to other number
+      - MYSQL_DATABASE=stock_analysis_project # name you want for the database
+      - MYSQL_USER=root # change to whatever username you want
+      - MYSQL_PASSWORD=pick_a_good_password #change to the password you want for user
+      - MYSQL_ROOT_PASSWORD=pick_a_good_password #change to good root password
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./db:/var/lib/mysql"
+
+    # need to be with command  like this, otherwise 
+    # https://stackoverflow.com/questions/59320228/getting-error-unknown-mysql-server-host-db-2-in-django-python-for-docker
+    # Getting error : Unknown MySQL server host 'db' (-2) in django python for docker 
+    command: --default-authentication-plugin=mysql_native_password
+    
+  # frontend:
+  #   build: .
+  #   image: node
+  #   volumes:
+  #     - .:/App/stock_analysis_project/frontend
+  #   command: npm run serve
+  #   ports:
+  #       - "8082:8082"
+
+  web:
+    build: .
+    #command: python3 manage.py runserver 0.0.0.0:8000
+    command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate --noinput && python3 manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/App/
+    ports:
+      - "8000:8000"
+     # - "8082:8082"
+    depends_on:
+      - db
+
+  broker:
+    image: rabbitmq:latest
+    hostname: broker
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
+    ports:
+      - "5672:5672"
+
+  worker1:
+    build: .
+    restart: "no"
+    command: celery -A stock_analysis_project worker -l info  -E 
+            #celery -A stock_analysis_project worker -l  info -E 
+    volumes:
+      - .:/App/
+    depends_on:
+      - broker
+
+  worker2:
+    build: .
+    restart: "no"
+    command: celery -A stock_analysis_project worker -l info  -E 
+            #celery -A stock_analysis_project worker -l  info -E 
+    volumes:
+      - .:/App/
+    depends_on:
+      - broker
+
+  # worker2:
+  #   build: .
+  #   restart: "no"
+  #   command: celery -A stock_analysis_project worker2 -l info -n  -E 
+  #   volumes:
+  #     - .:/App/
+  #   depends_on:
+  #     - broker
+
+  frontend:
+    build: .
+    restart: "no"
+    command: bash -c "npm run serve   --prefix /App/App/stock_analysis_project/frontend/"
+    volumes:
+      - .:/App/
+    ports:
+      - "8080:8080"
+    depends_on:
+      - web
+
+  # celery-beat:
+  #   build: .
+  #   command: celery -A stock_analysis_project beat -l info
+  #   volumes:
+  #     - ./App/
+  #   depends_on:
+  #     - broker
+
+  flower:  
+    image: mher/flower
+    command: ["flower", "--broker=amqp://admin:mypass@broker", "--port=5555"]  
+    ports:  
+      - 5555:5555 
+    depends_on:
+      - broker

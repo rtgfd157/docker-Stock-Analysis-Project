@@ -1,0 +1,17 @@
+
+FROM python:3
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /App
+WORKDIR /App
+COPY requirements.txt /App/
+RUN pip install -r requirements.txt
+COPY App /App/
+
+
+
+WORKDIR /App/stock_analysis_project
+
+#RUN python manage.py makemigrations
+#RUN  yes |  python manage.py migrate 
+
+#RUN yes | python manage.py collectstatic
