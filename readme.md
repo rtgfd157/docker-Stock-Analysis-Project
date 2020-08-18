@@ -3,7 +3,7 @@
 docker-compose -f "docker-compose.yml" up -d --build
 
 
-### instal module nodes manualy (first time use) for frontend
+### install module nodes manualy (first time use) for frontend
 
 
 docker run -it  stock-analysis-project-docker-master_web  /bin/bash
