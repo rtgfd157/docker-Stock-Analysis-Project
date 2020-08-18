@@ -9,8 +9,8 @@ docker-compose -f "docker-compose.yml" up -d --build
 ### install module nodes manualy (first time use) for frontend:
 ---------------------------------------------------------------
 
-enter to the container working  from docker compose command , and there run
-I'm using docker Dashboard for getting to Cli
+enter to the container working  from docker compose command , and there run.  
+(I'm using docker Dashboard for getting to Cli)
 
 ~~```cmd
 docker run -it  stock-analysis-project-docker-master_web  /bin/bash```~~
