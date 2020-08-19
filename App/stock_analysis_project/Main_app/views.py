@@ -16,24 +16,40 @@ import numpy
 
 def celery_view(request):    
     print(" from celery vieww  ")
-    celery_task_updating_stockdaydata.delay()
+    #celery_task_updating_stockdaydata.delay()
     #celery_task_updating_stockdaydata()
 
     today = datetime.today()
 
     # for first time using we will want to update right away because date field in model is auto now
-    # if StockDayData.objects.count()  > 0:
-    #     companies_obj= ComapnyStockData.objects.filter(update_time__lt=date(today.year, today.month, today.day))
-    # else :
-    #     companies_obj= ComapnyStockData.objects.all()
+    if StockDayData.objects.count()  > 0:
+        companies_obj= ComapnyStockData.objects.filter(update_time__lt=date(today.year, today.month, today.day)).values_list('pk', flat=True)
+    else :
+        companies_obj= ComapnyStockData.objects.all().values_list('pk', flat=True)
+    print("StockDayData.objects.count() : ",StockDayData.objects.count())
+    print("companies_obj : " ,companies_obj)
 
-    # n = 2
-    # l = numpy.array_split(numpy.array(companies_obj),n)
+    companies_list_pk = []
+    for ob in companies_obj.iterator():
+        #print(" ob ", ob)
+        companies_list_pk.append(ob)
+        #print(" /ob ", ob)
 
-    # for companies_list in l :
+    n = 2
+    print(" before split")
+    l = numpy.array_split(numpy.array(companies_list_pk),n)
+    print(" after split")
 
-    #     a =  Celery_Task_Updating_Stockdaydata(companies_list)
-    #     a.start.delay()
+    
+
+
+    
+    for companies_list in l :
+        print("from loop11")
+        celery_task_updating_stockdaydata.delay(companies_list_pk)
+        print("from loop12")
+        # a =  Celery_Task_Updating_Stockdaydata(companies_list)
+        # a.start.delay()
 
     return HttpResponse(dt.datetime.now())
 

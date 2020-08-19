@@ -121,24 +121,27 @@ lock= threading.Lock()
 #         p=StockDayData.objects.filter(stock_date__lt=date(day_after_10_days.year, day_after_10_days.month, day_after_10_days.day)).delete()
 
 @shared_task
-def celery_task_updating_stockdaydata():
+def celery_task_updating_stockdaydata(companies_list):
     """
     Task that update every  4 hours ( task config in settins.py ), using yfinannce library.
     work with celery , celery beat (for periodic).
     """
 
     print("  Starting Task of updating daily stocks  volumes -  StockDayData ")
-
+    #print("companies_list : ",companies_list)
     today = datetime.today()
     #companies_obj= ComapnyStockData.objects.filter(update_time__lt=date(today.year, today.month, today.day))#[:6:-1]
 
     # for first time using we will want to update right away because date field in model is auto now
-    if StockDayData.objects.count()  > 0:
-        companies_obj= ComapnyStockData.objects.filter(update_time__lt=date(today.year, today.month, today.day))
-    else :
-        companies_obj= ComapnyStockData.objects.all()
+    # if StockDayData.objects.count()  > 0:
+    #     companies_obj= ComapnyStockData.objects.filter(update_time__lt=date(today.year, today.month, today.day))
+    # else :
+    #     companies_obj= ComapnyStockData.objects.all()
 
-
+    #Posts.objects.filter(ownerid__in=[f.follow_id for f in following])
+    print("companies_list :", len(companies_list) )
+    companies_obj = ComapnyStockData.objects.filter(id__in= [f for f in companies_list] )
+    #print("companies_obj ", companies_obj)
 
     print(" number of companies : ", companies_obj.count())
     
@@ -161,7 +164,7 @@ def celery_task_updating_stockdaydata():
     t.sleep(2)
     print("---- finished threading")
 
-    a= ObvIndexMakerClass() ## updating OBV index with new values
+    #a= ObvIndexMakerClass() ## updating OBV index with new values
     return
 
     

@@ -26,3 +26,5 @@ run frontend container again
 
 ###
 if web not up  wait for  mysql being logged-in and up, then restart  container
+
+message  " django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'db' (111)") "

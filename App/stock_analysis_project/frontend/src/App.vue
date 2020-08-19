@@ -31,16 +31,16 @@ export default {
     update_stockdays_data() {
       // update all stocks daily  close , volume  - to 5 day long
       //let companies = -1;
-      axios
-        .get(`/api/Company/StockDay/counter/`)
-        .then(response =>
-          this.update_stock_day_data(response.data.company_count)
-        );
+      axios.get(`/api/Company/StockDay/counter/`).then(response => {
+        this.update_stock_day_data(response.data.company_count);
+        //let endpoint = "obv_index_maker_view/";
+        //apiService(endpoint);
+        //this.$router.push("/");
+      });
 
       // refresh page after change
       // https://stackoverflow.com/questions/48503760/vue-js-router-link-with-a-function-inside
       // https://router.vuejs.org/guide/essentials/navigation.html
-      this.$router.push("/");
     },
 
     update_stock_day_data(val) {
