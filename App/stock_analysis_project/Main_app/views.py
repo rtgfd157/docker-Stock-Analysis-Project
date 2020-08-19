@@ -35,21 +35,27 @@ def celery_view(request):
         companies_list_pk.append(ob)
         #print(" /ob ", ob)
 
-    n = 2
-    print(" before split")
-    l = numpy.array_split(numpy.array(companies_list_pk),n)
-    print(" after split")
+    # n = 2
+    # print(" before split")
+    # l = numpy.array_split(numpy.array(companies_list_pk),n)
+    # print(" after split")
 
+    # part 1
+    print("from task11")
+    celery_task_updating_stockdaydata.delay(companies_list_pk[:len(companies_list_pk)//2])
+    print("from task11/")
+
+    # part 2
+    print("from task21")
+    celery_task_updating_stockdaydata.delay(companies_list_pk[len(companies_list_pk)//2:])
+    print("from task22/")
     
-
-
-    
-    for companies_list in l :
-        print("from loop11")
-        celery_task_updating_stockdaydata.delay(companies_list_pk)
-        print("from loop12")
-        # a =  Celery_Task_Updating_Stockdaydata(companies_list)
-        # a.start.delay()
+    # for companies_list in l :
+    #     print("from loop11")
+        
+    #     print("from loop12")
+    #     # a =  Celery_Task_Updating_Stockdaydata(companies_list)
+    #     # a.start.delay()
 
     return HttpResponse(dt.datetime.now())
 
