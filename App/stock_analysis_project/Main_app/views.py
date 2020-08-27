@@ -8,26 +8,29 @@ from datetime import datetime, date, time, timedelta
 from OBVapp.models import OBVindex
 
 from django.shortcuts import HttpResponse
-from .models import ComapnyStockData,StockDayData
-from .tasks import celery_task_updating_stockdaydata #, Celery_Task_Updating_Stockdaydata
+from .models import ComapnyStockData, StockDayData
+# , Celery_Task_Updating_Stockdaydata
+from .tasks import celery_task_updating_stockdaydata
 from math import ceil
 import numpy
-
-
-def celery_view(request):    
+from celery import chord, group, chain
+from OBVapp.obv_index_maker2 import ObvIndexMakerClass
+from OBVapp.tasks import obvindexmakerfunc
+def celery_view(request):
     print(" from celery vieww  ")
-    #celery_task_updating_stockdaydata.delay()
-    #celery_task_updating_stockdaydata()
+    # celery_task_updating_stockdaydata.delay()
+    # celery_task_updating_stockdaydata()
 
     today = datetime.today()
 
     # for first time using we will want to update right away because date field in model is auto now
-    if StockDayData.objects.count()  > 0:
-        companies_obj= ComapnyStockData.objects.filter(update_time__lt=date(today.year, today.month, today.day)).values_list('pk', flat=True)
-    else :
-        companies_obj= ComapnyStockData.objects.all().values_list('pk', flat=True)
-    print("StockDayData.objects.count() : ",StockDayData.objects.count())
-    print("companies_obj : " ,companies_obj)
+    if StockDayData.objects.count() > 0:
+        companies_obj = ComapnyStockData.objects.filter(update_time__lt=date(
+            today.year, today.month, today.day)).values_list('pk', flat=True)
+    else:
+        companies_obj = ComapnyStockData.objects.all().values_list('pk', flat=True)
+    print("StockDayData.objects.count() : ", StockDayData.objects.count())
+    print("companies_obj : ", companies_obj)
 
     companies_list_pk = []
     for ob in companies_obj.iterator():
@@ -40,7 +43,7 @@ def celery_view(request):
     # l = numpy.array_split(numpy.array(companies_list_pk),n)
     # print(" after split")
 
-    # part 1
+    part 1
     print("from task11")
     celery_task_updating_stockdaydata.delay(companies_list_pk[:len(companies_list_pk)//2])
     print("from task11/")
@@ -49,10 +52,39 @@ def celery_view(request):
     print("from task21")
     celery_task_updating_stockdaydata.delay(companies_list_pk[len(companies_list_pk)//2:])
     print("from task22/")
+
+    # job =   group(
+    #         celery_task_updating_stockdaydata.si(companies_list_pk[:len(companies_list_pk)//2]),
+    #         celery_task_updating_stockdaydata.si(companies_list_pk[len(companies_list_pk)//2:])
+    # ) 
+
+
+    # result = job.apply_async()
+    # can be problem if 2 tasks will make  obv index  and create in the same time ,  but slim chances currently
+    # line 68 - in celery_task_updating_stockdaydata()
+
+    # not working  opening many tasks known bug  https://www.google.com/search?client=firefox-b-d&q=+Received+task%3A+celery.chord_unlock+chord
+    #callback = obvindexmakerfunc.si()
+    #chord (job)(callback)
+
     
+
+    # group(  celery_task_updating_stockdaydata(companies_list_pk[:len(companies_list_pk)//2]).delay() ,
+    #     celery_task_updating_stockdaydata(companies_list_pk[len(companies_list_pk)//2:]).delay()  )
+    
+    # chord(
+
+    #     group(  celery_task_updating_stockdaydata(companies_list_pk[:len(companies_list_pk)//2]) ,
+    #     celery_task_updating_stockdaydata(companies_list_pk[len(companies_list_pk)//2:])  ) ,
+             
+              
+    #     a=ObvIndexMakerClass()
+
+    # ).delay()
+
     # for companies_list in l :
     #     print("from loop11")
-        
+
     #     print("from loop12")
     #     # a =  Celery_Task_Updating_Stockdaydata(companies_list)
     #     # a.start.delay()
@@ -60,12 +92,12 @@ def celery_view(request):
     return HttpResponse(dt.datetime.now())
 
 
-
 def test_view(request):
     return HttpResponse(dt.datetime.now())
 
 
 def insert_company_csv(request):
+    ComapnyStockData.objects.all().delete()
     print("hello world")
     with open('others/2.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -76,13 +108,13 @@ def insert_company_csv(request):
                 line_count += 1
             else:
                 #print(f'\t{row[0]} works in the {row[1]} department, and was born in {row[2]}.')
-                x= row[0].replace("^","-")
-                ComapnyStockData.objects.create(ticker=x ,company_name=row[1], stock_exchange= row[2] )
+                x = row[0].replace("^", "-")
+                ComapnyStockData.objects.create(
+                    ticker=x, company_name=row[1], stock_exchange=row[2])
                 line_count += 1
                 print(line_count)
         print(f'Processed {line_count} lines.')
-    
-    
+
     # today = datetime.today()
     # companies_obj= ComapnyStockData.objects.filter(update_time__lt=date(today.year, today.month, today.day))[:1200:-1]
 
@@ -92,7 +124,7 @@ def insert_company_csv(request):
     # columns = [companies_obj[i*split:(i+1)*split] for i in range(4)]
 
     #print (" lennnnnn ",columns[0])
-    #n = 5 
+    #n = 5
 
     #arr = []
 
@@ -107,11 +139,11 @@ def insert_company_csv(request):
     #print(" companies_obj " ,len(companies_obj))
 
     #B, C ,D= split_list(companies_obj)
-    
+
     #val =  list(chunk(companies_obj, 3,len(companies_obj)) )
 
-    #p=StockDayData.objects.filter(company_stock_data__ticker="GNMX")
-    #print(p)
+    # p=StockDayData.objects.filter(company_stock_data__ticker="GNMX")
+    # print(p)
     #l1= l[0].tolist()
     # l2= l[1].tolist()
     # l3= l[2].tolist()
@@ -126,16 +158,16 @@ def insert_company_csv(request):
     # for com in numpy.nditer(l[0]):
     #      print(" com ",com)
 
-    #return HttpResponse(dt.datetime.now())
-    #StockDayData.objects.all().delete()
+    # return HttpResponse(dt.datetime.now())
+    # StockDayData.objects.all().delete()
     #s= ComapnyStockData.objects.filter(ticker="AMD")
     #today = datetime.today()
     #ComapnyStockData.objects.all().update(update_time =date(today.year, today.month, 12))
-    #print(s)
-    #StockDayData.objects.all().delete()
+    # print(s)
+    # StockDayData.objects.all().delete()
     return HttpResponse(dt.datetime.now())
-    #StockDayData.objects.all().delete()
-    #return
+    # StockDayData.objects.all().delete()
+    # return
     # now = datetime.now()
     # now_date =now.date()
 
@@ -146,30 +178,30 @@ def insert_company_csv(request):
 
     # print(" p count ", p.count())
     # return HttpResponse(dt.datetime.now())
-    #p=StockDayData.objects.all()
-    #p=StockDayData.objects.all().prefetch_related('company_stock_data').all()
+    # p=StockDayData.objects.all()
+    # p=StockDayData.objects.all().prefetch_related('company_stock_data').all()
 
     #a = p.filter(company_stock_data__ticker="LMND")
 
     #print(" ******************* ",a)
     #s= ComapnyStockData.objects.filter(ticker="AMD")
-    #print(" ################### ",s)
+    # print(" ################### ",s)
 
-    #q=p.filter(company_stock_data__ticker="AMD")
-    
+    # q=p.filter(company_stock_data__ticker="AMD")
+
     #print("qqq ",q)
-    #print(p.company_stock_data.objects.filter(company_stock_data="LMND"))
+    # print(p.company_stock_data.objects.filter(company_stock_data="LMND"))
     #today = datetime.today()
-    #ComapnyStockData.objects.all().update(update_time =date(today.year, today.month, 12)) # 3 seconds
+    # ComapnyStockData.objects.all().update(update_time =date(today.year, today.month, 12)) # 3 seconds
     return HttpResponse(dt.datetime.now())
     # pp = ComapnyStockData.objects.all()
     # today = datetime.today()
     # for p in pp:
     #     p.update_time =date(today.year, today.month, 13)
-        
+
     #     p.save()
-        #ComapnyStockData.objects.filter(stock_date =date(today.year, today.month, today.day)  )
-    #return HttpResponse(dt.datetime.now())
+    #ComapnyStockData.objects.filter(stock_date =date(today.year, today.month, today.day)  )
+    # return HttpResponse(dt.datetime.now())
     '''
     pr=StockDayData.objects.filter().order_by('-id')[:10:-1]
 
@@ -209,7 +241,7 @@ def insert_company_csv(request):
                 print(line_count)
         print(f'Processed {line_count} lines.')
     '''
-    
+
 
 def delete_all_db(request):
     """
@@ -221,12 +253,14 @@ def delete_all_db(request):
     OBVindex.objects.all().delete()
     return HttpResponse(dt.datetime.now())
 
+
 def load_db(request):
     """
         load db (companies)  from others/2.csv file
     """
+    ComapnyStockData.objects.all().delete()
 
-    print (" load_db from csv file")
+    print(" load_db from csv file")
     lista = []
     with open('others/2.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -237,13 +271,13 @@ def load_db(request):
                 line_count += 1
             else:
                 #print(f'\t{row[0]} works in the {row[1]} department, and was born in {row[2]}.')
-                x= row[0].replace("^","-")
+                x = row[0].replace("^", "-")
                 #ComapnyStockData.objects.create(ticker=x ,company_name=row[1], stock_exchange= row[2] )
-                lista.append(    ComapnyStockData(ticker=x ,company_name=row[1], stock_exchange= row[2] )        )
+                lista.append(ComapnyStockData(
+                    ticker=x, company_name=row[1], stock_exchange=row[2]))
                 line_count += 1
                 print(line_count)
 
-    ComapnyStockData.objects.bulk_create( lista)
+    ComapnyStockData.objects.bulk_create(lista)
 
     return HttpResponse(dt.datetime.now())
-

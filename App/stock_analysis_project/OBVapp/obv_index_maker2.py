@@ -61,6 +61,7 @@ class ObvIndexMakerClass:
         for i,val in enumerate(self.OBV_index_l):
             print(i,") ",val)
 
+        # can be problem if 2 task will make  obv index  and create in the same time ,  but slim chances currently
         OBVindex.objects.all().delete()
         OBVindex.objects.bulk_create(self.OBV_index_l)
         

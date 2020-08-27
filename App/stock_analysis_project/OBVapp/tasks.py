@@ -9,6 +9,9 @@ import yfinance as yf
 import datetime as dt
 from datetime import datetime, date, time, timedelta
 from Main_app.models import ComapnyStockData
+from OBVapp.obv_index_maker2 import ObvIndexMakerClass
+from celery.decorators import task
+
 
 @shared_task
 def celery_task1():
@@ -81,7 +84,6 @@ def celery_task1():
 
     #sdd = StockDayData.objects.filter(stock_date=date(day_in_loop.year, day_in_loop.month, day_in_loop.day))
 
-from celery.decorators import task
 
 @shared_task
 def make_obv(a,b):
@@ -92,3 +94,7 @@ def make_obv(a,b):
     
     OBVindex.objects.create(company_stock_data=p, percentage_change=1.25 , volume_change= 60000)
     return a+b
+
+@shared_task
+def obvindexmakerfunc():
+    ObvIndexMakerClass()
