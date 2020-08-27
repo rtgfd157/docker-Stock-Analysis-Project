@@ -43,7 +43,7 @@ def celery_view(request):
     # l = numpy.array_split(numpy.array(companies_list_pk),n)
     # print(" after split")
 
-    part 1
+    #part 1
     print("from task11")
     celery_task_updating_stockdaydata.delay(companies_list_pk[:len(companies_list_pk)//2])
     print("from task11/")
