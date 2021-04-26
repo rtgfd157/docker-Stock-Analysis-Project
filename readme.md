@@ -31,13 +31,19 @@ enter to the stock-analysis-project-docker-master_web container working  from do
 docker run -it  stock-analysis-project-docker-master_web  /bin/bash```~~
 
 ```cmd
-cd /App/stock_analysis_project/frontend
+cd frontend
 ```
 ```cmd 
 npm install
 ```
 
 run frontend container again
+
+
+
+## Browser:
+[Project website](http://127.0.0.1:8000/)
+
 
 ###
 if web not up  wait for  mysql being logged-in and up, then restart  container

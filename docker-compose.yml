@@ -8,7 +8,9 @@ services:
       - MYSQL_HOST=localhost
       - MYSQL_PORT=3306  # cannot change this port to other number
       - MYSQL_DATABASE=stock_analysis_project # name you want for the database
-      - MYSQL_USER=root # change to whatever username you want
+
+      #- MYSQL_USER=root # was in old version of mysql .. (outdated). works with -MYSQL_ROOT_PASSWORD
+
       - MYSQL_PASSWORD=pick_a_good_password #change to the password you want for user
       - MYSQL_ROOT_PASSWORD=pick_a_good_password #change to good root password
     ports:
