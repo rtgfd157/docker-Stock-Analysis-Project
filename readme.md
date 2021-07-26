@@ -1,4 +1,10 @@
 
+### Error in:
+
+docker-Stock-Analysis-Project/App/stock_analysis_project/Main_app/Helper/yfinance_helper.py   -Line 18  
+# -- return NoneType in celery in python3 manage.py test Main_app.tests.test_yfinance.yfinanceTest  --verbosity 2 look ok 
+
+
 ### Build from start:
 ---------------------
 stock analysis project is a project,  that take  a few thousands stock data (Ticker,company name , stock extchange),  and making OBV index.
