@@ -75,7 +75,6 @@ def make(companies_obj_queryset):
         # error in fetching historical  data with celery need to debug
 
         company_yfinance_object ,com_daily_history = api_call_ticker_and_history_return(company_stockdata_object, day_after_x_amount_days )  
-        company_yfinance_history =company_yfinance_object.history(start=day_after_x_amount_days,end = str(get_date_from_today()) ) 
 
         
 
