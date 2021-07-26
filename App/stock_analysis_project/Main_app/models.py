@@ -19,6 +19,10 @@ class ComapnyStockData(models.Model):
     def __str__(self):
         return self.ticker + " " + self.company_name + " " + self.stock_exchange
 
+    def value_list_into_querySet(companies_list):
+        return ComapnyStockData.objects.filter(id__in= [f for f in companies_list] )
+
+
 
 
 class StockDayData(models.Model):

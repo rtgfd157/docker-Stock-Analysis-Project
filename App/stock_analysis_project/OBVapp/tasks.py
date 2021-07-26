@@ -8,13 +8,17 @@ from .models import OBVindex
 import yfinance as yf
 import datetime as dt
 from datetime import datetime, date, time, timedelta
-from Main_app.models import ComapnyStockData
+from Main_app.models import ComapnyStockData ,StockDayData
 from OBVapp.obv_index_maker2 import ObvIndexMakerClass
 from celery.decorators import task
 
 
 @shared_task
 def celery_task1():
+    """
+        for testing purpose
+    """
+
     #print("          awdsasd        1                && ")
     above_2 =0
     #now = datetime.now()
@@ -41,6 +45,8 @@ def celery_task1():
         
         some_var = 0 # counter
         y_ob = yf.Ticker(com.ticker)
+
+        # bug , look at runing task fix
         result =y_ob.history(start=str(day_after_10_days) ,end = str(l) )
 
         idx= 0 # counter on result

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: mysql
+    image: mysql:8.0.26
     restart: always
     environment:
       - MYSQL_HOST=localhost
@@ -46,7 +46,7 @@ services:
       - db
 
   broker:
-    image: rabbitmq:latest
+    image: rabbitmq:3.8.19
     hostname: broker
     environment:
       - RABBITMQ_DEFAULT_USER=admin
@@ -57,7 +57,8 @@ services:
   worker1:
     build: .
     restart: "no"
-    command: celery -A stock_analysis_project worker -l info  -E 
+    command: celery -A stock_analysis_project  worker -l info  -E  
+            #celery worker -A stock_analysis_project --pool threads -l INFO
             #celery -A stock_analysis_project worker -l  info -E 
     volumes:
       - .:/App/
@@ -67,7 +68,8 @@ services:
   worker2:
     build: .
     restart: "no"
-    command: celery -A stock_analysis_project worker -l info  -E 
+    command: celery -A stock_analysis_project worker -l  info -E
+            #celery worker -A stock_analysis_project --pool threads -l INFO 
             #celery -A stock_analysis_project worker -l  info -E 
     volumes:
       - .:/App/
@@ -103,7 +105,7 @@ services:
   #     - broker
 
   flower:  
-    image: mher/flower
+    image: mher/flower:0.9.7
     command: ["flower", "--broker=amqp://admin:mypass@broker", "--port=5555"]  
     ports:  
       - 5555:5555 
