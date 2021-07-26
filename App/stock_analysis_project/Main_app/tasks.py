@@ -76,12 +76,9 @@ def make(companies_obj_queryset):
 
         company_yfinance_object ,com_daily_history = api_call_ticker_and_history_return(company_stockdata_object, day_after_x_amount_days )  
 
-        
-
+    
         company_day_records_in_db = all_sdd.filter( company_stock_data=company_stockdata_object  )
-
         insert_daily_stock_vol(com_daily_history,  company_day_records_in_db, company_stockdata_object)
-
 
         company_stockdata_object.save() # will update check time, because we now checked with the api
 
